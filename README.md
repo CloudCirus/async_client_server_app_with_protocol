@@ -1,4 +1,4 @@
 PhoneBook server with funny protocol:
 
-start server: <your python int> server.py
-start client for localhost: <your python int> client.py 'localhost' 3333
+start server: main.py
+start client for localhost: client.py 'localhost' 3333
