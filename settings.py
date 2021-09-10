@@ -1,0 +1,2 @@
+PROTOCOL = "РКСОК/1.0"
+ENCODING = "UTF-8"
