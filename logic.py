@@ -4,14 +4,14 @@ from approveclient import KgbClient
 
 
 class Logic:
-    """Encapsulates the application logic"""
+    """Application logic"""
 
     def __init__(self, recieved_data_from_client: str) -> None:
         self.recv_data = recieved_data_from_client
-        self.response = self.__main()
+        self.__response = self.main()
 
-    def __main(self):
-        """Encapsulates main logic"""
+    def main(self):
+        """Main logic"""
         print('data for kgb', self.recv_data)
         kgb = KgbClient('vragi-vezde.to.digital', 51624)
         kgb.take_recv_data_for_approving(self.recv_data)
@@ -29,6 +29,7 @@ class Logic:
         resp = ResponseLogic(command, name, phones)
         return resp.make_response()
 
+    @property
     def response_for_client(self):
         """Used in server echo handle and return response for client"""
-        return self.response
+        return self.__response

@@ -3,6 +3,7 @@ import time
 from settings import ENCODING
 from asyncio import StreamReader, StreamWriter
 from logic import Logic
+from settings import Convertor
 
 
 class Server:
@@ -20,7 +21,7 @@ class Server:
         while True:
             client_recv_data_bytes = await reader.read(1024)
             print('take recieved data...\n')
-            client_recv_data += client_recv_data_bytes.decode(ENCODING)
+            client_recv_data += Convertor.bytes_to_str(client_recv_data_bytes)
             if client_recv_data.endswith('\r\n\r\n'):
                 break
             if not client_recv_data_bytes:
@@ -33,9 +34,10 @@ class Server:
         print(f'received:\n{client_recv_data!r}\nfrom\n{addr!r}')
 
         logic = Logic(client_recv_data)
-        response = logic.response_for_client()
+        # prop
+        response = logic.response_for_client
 
-        writer.write(response.encode(ENCODING))
+        writer.write(Convertor.str_to_bytes(response))
         print(f'send:\n{response!r}')
         await writer.drain()
 

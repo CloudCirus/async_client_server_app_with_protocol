@@ -3,6 +3,7 @@ from random import randint
 from settings import ENCODING
 from requestslogic import RequestLogic
 from responselogic import ResponseStatus as RS
+from settings import Convertor
 
 
 class KgbClient:
@@ -25,12 +26,14 @@ class KgbClient:
 
         kgb_request = RequestLogic.kgb_request(self.client_recv_data)
         print('approving...', kgb_request, sep='\n')
-        kgb.send(kgb_request.encode(ENCODING))
+        kgb.send(Convertor.str_to_bytes(kgb_request))
         resp = str()
         while True:
-            data = kgb.recv(1024).decode(ENCODING)
+            data = Convertor.bytes_to_str(kgb.recv(1024))
             resp += data
-            if resp.endswith('\r\n\r\n') or not data:
+            if resp.endswith('\r\n\r\n'):
+                break
+            if not data:
                 break
             else:
                 kgb.settimeout(5)
