@@ -1,7 +1,7 @@
 import socket
 from random import randint
 from settings import ENCODING
-from requestslogic import RequestLogic
+from requestslogic import Request
 from responselogic import ResponseStatus as RS
 from settings import Convertor
 
@@ -24,7 +24,7 @@ class KgbClient:
         kgb = socket.create_connection((self.host, self.port))
         print('self kgb data:', self.client_recv_data)
 
-        kgb_request = RequestLogic.kgb_request(self.client_recv_data)
+        kgb_request = Request.kgb_request(self.client_recv_data)
         print('approving...', kgb_request, sep='\n')
         kgb.send(Convertor.str_to_bytes(kgb_request))
         resp = str()
@@ -57,16 +57,12 @@ class KgbClient:
         """Collect response feedback massage from approving server"""
         self.feedback = self.response.split('\r\n')[1]
 
-    def is_not_ok(self) -> bool:
+    @property
+    def is_aproved(self) -> bool:
         """Checks if response status is not approved"""
-        if self.not_approve == self.status:
-            return True
-        else:
-            return False
+        return self.not_approve != self.status
 
+    @property
     def is_bad_request(self):
         """Checks if response status means that client request was bad"""
-        if self.bad_status == self.status:
-            return True
-        else:
-            return False
+        return self.bad_status == self.status

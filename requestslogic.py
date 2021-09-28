@@ -10,7 +10,7 @@ class RequestCommand(Enum):
     APPROVE = "АМОЖНА?"
 
 
-class RequestLogic:
+class Request:
     """Simplifies request processing"""
 
     def __init__(self, command: str) -> None:

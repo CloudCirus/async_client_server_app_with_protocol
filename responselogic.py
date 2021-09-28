@@ -2,7 +2,7 @@ from enum import Enum
 from fileslogic import FilesLogic
 from typing import Union
 from settings import PROTOCOL
-from requestslogic import RequestLogic
+from requestslogic import Request
 
 
 class ResponseStatus(Enum):
@@ -17,7 +17,7 @@ RESP = ResponseStatus
 ENDING = '\r\n\r\n'
 
 
-class ResponseLogic(RequestLogic):
+class Response(Request):
     """Make responses and handle data for them"""
 
     def __init__(self, command: str, name: str, phones: Union[str, None]) -> None:

@@ -2,7 +2,7 @@ import asyncio
 import time
 from settings import ENCODING
 from asyncio import StreamReader, StreamWriter
-from logic import Logic
+from flow import Flow
 from settings import Convertor
 
 
@@ -33,7 +33,7 @@ class Server:
         addr = writer.get_extra_info('peername')
         print(f'received:\n{client_recv_data!r}\nfrom\n{addr!r}')
 
-        logic = Logic(client_recv_data)
+        logic = Flow(client_recv_data)
         # prop
         response = logic.response_for_client
 
