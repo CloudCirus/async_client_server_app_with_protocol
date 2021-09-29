@@ -1,9 +1,8 @@
 import socket
 from random import randint
-from settings import ENCODING
-from requestslogic import Request
-from responselogic import ResponseStatus as RS
-from settings import Convertor
+from .settings import ENCODING, Convertor
+from .requests import Request
+from .response import ResponseStatus as RS
 
 
 class KgbClient:

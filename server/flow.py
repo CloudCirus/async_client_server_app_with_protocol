@@ -1,6 +1,6 @@
-from responselogic import Response
-from data import Data
-from approveclient import KgbClient
+from .response import Response
+from .data import Data
+from .approve_client import KgbClient
 
 
 class Flow:

@@ -1,5 +1,5 @@
 from enum import Enum
-from settings import PROTOCOL
+from .settings import PROTOCOL
 
 
 class RequestCommand(Enum):

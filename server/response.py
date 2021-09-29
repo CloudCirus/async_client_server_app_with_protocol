@@ -1,8 +1,8 @@
 from enum import Enum
-from fileslogic import FilesLogic
 from typing import Union
-from settings import PROTOCOL
-from requestslogic import Request
+from .phones_storage import PhonesStorage
+from .settings import PROTOCOL
+from .requests import Request
 
 
 class ResponseStatus(Enum):
@@ -42,7 +42,7 @@ class Response(Request):
 
     def make_response(self) -> str:
         """used in mail logic for make response and handle data"""
-        files = FilesLogic(self.name, self.phones)
+        files = PhonesStorage(self.name, self.phones)
         phones = None
         print('\n')
         if self.get_command():

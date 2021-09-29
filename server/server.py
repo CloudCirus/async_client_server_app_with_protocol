@@ -1,9 +1,8 @@
 import asyncio
 import time
-from settings import ENCODING
+from .settings import ENCODING, Convertor
 from asyncio import StreamReader, StreamWriter
-from flow import Flow
-from settings import Convertor
+from .flow import Flow
 
 
 class Server:

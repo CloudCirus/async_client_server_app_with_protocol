@@ -3,10 +3,10 @@ import os
 
 
 def _path(name: str) -> str:
-    return f'fake_db/{name}.txt'
+    return f'phones_storage/{name}.txt'
 
 
-class FilesLogic:
+class PhonesStorage:
     """Handle data"""
 
     def __init__(self, name: str, phones: Union[list, None]) -> None:
