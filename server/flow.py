@@ -1,3 +1,4 @@
+from server.validation import Validator
 from .response import Response
 from .data import Data
 from .approve_client import KgbClient
@@ -14,6 +15,9 @@ class Flow:
         """Main logic"""
         print('data for kgb', self.recv_data)
         if not self.recv_data:
+            return Response.bad_request()
+        string = Validator(self.recv_data)
+        if not string:
             return Response.bad_request()
         kgb = KgbClient('vragi-vezde.to.digital', 51624)
         kgb.take_recv_data_for_approving(self.recv_data)
